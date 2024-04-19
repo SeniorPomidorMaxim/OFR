@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Камень, Ножницы, Бумага</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Игра "Камень, Ножницы, Бумага"</h2>
+    <p>Выберите свой вариант:</p>
+    <button onclick="play('rock')">Камень</button>
+    <button onclick="play('scissors')">Ножницы</button>
+    <button onclick="play('paper')">Бумага</button>
+    <div id="result"></div>
+
+    <script>
+        function play(userChoice) {
+            // Генерируем случайный выбор компьютера
+            const choices = ['rock', 'paper', 'scissors'];
+            const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+            // Определяем победителя
+            let result;
+            if (userChoice === computerChoice) {
+                result = "Ничья!";
+            } else if ((userChoice === 'rock' && computerChoice === 'scissors') ||
+                       (userChoice === 'scissors' && computerChoice === 'paper') ||
+                       (userChoice === 'paper' && computerChoice === 'rock')) {
+                result = "Вы победили!";
+            } else {
+                result = "Вы проиграли!";
+            }
+
+            // Выводим результат на страницу
+            document.getElementById("result").innerText = `Вы выбрали ${userChoice}, компьютер выбрал ${computerChoice}. ${result}`;
+        }
+    </script>
+</body>
+</html>
