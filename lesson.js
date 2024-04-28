@@ -1,37 +1,30 @@
-// Создайте функцию calculateFactorial, которая принимает число n в качестве аргумента и возвращает факториал этого числа.
-
-function calculateFactorial(n) {
-    if (n === 0 || n === 1) {
-        return 1;
-    } else {
-        return n * calculateFactorial(n - 1);
+// Функция для вычисления корней квадратного уравнения
+function solveQuadratic(a, b, c) {
+    // Вычисляем дискриминант
+    var discriminant = b * b - 4 * a * c;
+    
+    // Если дискриминант меньше нуля, уравнение не имеет действительных корней
+    if (discriminant < 0) {
+        return "Уравнение не имеет действительных корней";
     }
-}
-console.log(calculateFactorial(5));
-
-//Задача: Создайте массив numbers из 10 случайных целых чисел от 1 до 100. Затем найдите и выведите на экран наименьшее и наибольшее числа из этого массива.
-
-let numbers = [];
-
-// Заполнение массива случайными числами
-for (let i = 0; i < 10; i++) {
-    numbers.push(Math.floor(Math.random() * 100) + 1);
-}
-
-console.log("Массив чисел:", numbers);
-
-// Поиск наименьшего и наибольшего чисел
-let min = numbers[0];
-let max = numbers[0];
-
-for (let i = 1; i < numbers.length; i++) {
-    if (numbers[i] < min) {
-        min = numbers[i];
+    
+    // Если дискриминант равен нулю, у уравнения один корень
+    else if (discriminant === 0) {
+        var root = -b / (2 * a);
+        return "Уравнение имеет один корень: " + root;
     }
-    if (numbers[i] > max) {
-        max = numbers[i];
+    
+    // Если дискриминант больше нуля, у уравнения два корня
+    else {
+        var root1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+        var root2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+        return "Уравнение имеет два корня: " + root1 + " и " + root2;
     }
 }
 
-console.log("Наименьшее число:", min);
-console.log("Наибольшее число:", max);
+// Пример использования функции
+var a = 1;
+var b = -3;
+var c = 2;
+var result = solveQuadratic(a, b, c);
+console.log(result); // Выводим результат в консоль
